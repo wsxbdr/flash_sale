@@ -7,12 +7,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("")
 public class PurchaseController {
+    @Value("${CUSTOM_KEY:source}")
+    private String name;
+
+    @Value("${CUSTOM_VALUE:front}")
+    private String value;
+
     @Autowired
     PurchaseService purchaseService;
 
@@ -42,8 +49,7 @@ public class PurchaseController {
 
     @ResponseBody
     @GetMapping("/test")
-    public ProductPo test(){
-        ProductPo product = productMapper.getProduct(1L);
-        return product;
+    public String test(){
+        return name+": "+value;
     }
 }

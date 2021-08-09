@@ -10,5 +10,8 @@ public interface ProductMapper {
     ProductPo getProduct(Long id);
 
     //减库存
+    int decreaseProductVersion(@Param("id") Long id, @Param("quantity") int quantity, @Param("version") int version);
+
     int decreaseProduct(@Param("id") Long id, @Param("quantity") int quantity);
+
 }

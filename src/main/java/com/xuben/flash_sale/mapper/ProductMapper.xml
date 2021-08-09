@@ -6,8 +6,12 @@
 	    <select id="getProduct"  parameterType="Long" resultType="product">
 			select id, product_name as productName, stock, price, version, note from t_product where id = #{id}
 	    </select>
+		<update id="decreaseProductVersion">
+			update t_product set stock = stock - #{quantity},version = version + 1  where id = #{id} and version = #{version}
+		</update>
 		<update id="decreaseProduct">
 			update t_product set stock = stock - #{quantity} where id = #{id}
 		</update>
+
 	</mapper>
 
